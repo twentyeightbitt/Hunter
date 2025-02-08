@@ -16,9 +16,9 @@ public class MoveBullet1 : MonoBehaviour
             Instantiate(bullet, barrel.position, _bulletRotation);
         }
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            Instantiate(enemy, enemyPos.position, enemy.transform.rotation);
-        }
+        //if (Input.GetKey(KeyCode.S))
+        //{
+        //    Instantiate(enemy, enemyPos.position, enemy.transform.rotation);
+        //}
     }
 }

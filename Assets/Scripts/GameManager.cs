@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
-using UnityEngine.UIElements;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
 
-    /*public int coins = 0;
-    public TextMeshProUGUI coinsText;*/
+    public int coins = 0;
+    public TextMeshProUGUI coinsText;
     [SerializeField] GameObject _startMenu;
+    public static GameManager Instance;
  
 
     public void Play()
@@ -31,6 +29,27 @@ public class GameManager : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }*/
+
+
+    public void addPoints()
+    {
+        coins++;
+        coinsText.text = "POINTS: " + coins;
+    }
+
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            Instance = this;  
+                
+        } else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
 
 

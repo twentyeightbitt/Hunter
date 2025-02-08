@@ -1,29 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
-using System.Diagnostics;
-using System;
 
 public class DestroyEnemies : MonoBehaviour
 {
-    public int coins = 0;
-    public TextMeshProUGUI coinsText;
-    private void OnTriggerEnter(Collider collision)
+    public static GameManager Manager;
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
             Destroy(gameObject);
+            Manager.addPoints();
         }
-        
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            coins++; //++ - операция инкремента, которая увеличивает значение числовой переменной на 1. -- - это декремент, она обратная.
-            Destroy(collision.gameObject);
-            coinsText.text = "POINTS: " + coins;
-        }
-        Console.WriteLine("fdsfasd");
+    }
+
+    private void Start()
+    {
+        Manager = GameManager.Instance;
     }
 }
